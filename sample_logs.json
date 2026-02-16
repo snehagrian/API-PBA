@@ -1,0 +1,418 @@
+[
+  {
+    "endpoint": "/api/users/search",
+    "response_time_ms": 1250,
+    "status_code": 200,
+    "db_query_count": 15,
+    "timestamp": "2026-02-16T10:15:23Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/search",
+    "response_time_ms": 1430,
+    "status_code": 200,
+    "db_query_count": 18,
+    "timestamp": "2026-02-16T10:16:45Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/search",
+    "response_time_ms": 1100,
+    "status_code": 200,
+    "db_query_count": 14,
+    "timestamp": "2026-02-16T10:25:33Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/search",
+    "response_time_ms": 1380,
+    "status_code": 200,
+    "db_query_count": 16,
+    "timestamp": "2026-02-16T10:35:12Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/search",
+    "response_time_ms": 1520,
+    "status_code": 200,
+    "db_query_count": 19,
+    "timestamp": "2026-02-16T10:45:55Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/analytics/dashboard",
+    "response_time_ms": 2100,
+    "status_code": 200,
+    "db_query_count": 25,
+    "timestamp": "2026-02-16T10:20:15Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/analytics/dashboard",
+    "response_time_ms": 1950,
+    "status_code": 200,
+    "db_query_count": 23,
+    "timestamp": "2026-02-16T10:21:30Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/analytics/dashboard",
+    "response_time_ms": 2300,
+    "status_code": 504,
+    "db_query_count": 28,
+    "timestamp": "2026-02-16T10:26:44Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/analytics/dashboard",
+    "response_time_ms": 2450,
+    "status_code": 200,
+    "db_query_count": 27,
+    "timestamp": "2026-02-16T10:32:18Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/analytics/dashboard",
+    "response_time_ms": 2180,
+    "status_code": 200,
+    "db_query_count": 24,
+    "timestamp": "2026-02-16T10:40:33Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/analytics/dashboard",
+    "response_time_ms": 2550,
+    "status_code": 504,
+    "db_query_count": 29,
+    "timestamp": "2026-02-16T10:48:22Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/details",
+    "response_time_ms": 850,
+    "status_code": 200,
+    "db_query_count": 8,
+    "timestamp": "2026-02-16T10:18:34Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/details",
+    "response_time_ms": 920,
+    "status_code": 500,
+    "db_query_count": 12,
+    "timestamp": "2026-02-16T10:19:01Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/details",
+    "response_time_ms": 780,
+    "status_code": 500,
+    "db_query_count": 9,
+    "timestamp": "2026-02-16T10:24:22Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/details",
+    "response_time_ms": 890,
+    "status_code": 200,
+    "db_query_count": 10,
+    "timestamp": "2026-02-16T10:27:55Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/details",
+    "response_time_ms": 805,
+    "status_code": 500,
+    "db_query_count": 11,
+    "timestamp": "2026-02-16T10:34:44Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/details",
+    "response_time_ms": 760,
+    "status_code": 200,
+    "db_query_count": 9,
+    "timestamp": "2026-02-16T10:41:15Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/details",
+    "response_time_ms": 945,
+    "status_code": 500,
+    "db_query_count": 13,
+    "timestamp": "2026-02-16T10:46:28Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/recommendations",
+    "response_time_ms": 1650,
+    "status_code": 200,
+    "db_query_count": 22,
+    "timestamp": "2026-02-16T10:22:40Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/recommendations",
+    "response_time_ms": 1720,
+    "status_code": 200,
+    "db_query_count": 24,
+    "timestamp": "2026-02-16T10:28:55Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/recommendations",
+    "response_time_ms": 1580,
+    "status_code": 200,
+    "db_query_count": 21,
+    "timestamp": "2026-02-16T10:36:20Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/products/recommendations",
+    "response_time_ms": 1850,
+    "status_code": 200,
+    "db_query_count": 26,
+    "timestamp": "2026-02-16T10:44:12Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/orders",
+    "response_time_ms": 95,
+    "status_code": 200,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:17:12Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/orders",
+    "response_time_ms": 105,
+    "status_code": 200,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:22:05Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/orders",
+    "response_time_ms": 88,
+    "status_code": 201,
+    "db_query_count": 3,
+    "timestamp": "2026-02-16T10:28:10Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/orders",
+    "response_time_ms": 92,
+    "status_code": 200,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:33:25Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/orders",
+    "response_time_ms": 110,
+    "status_code": 201,
+    "db_query_count": 3,
+    "timestamp": "2026-02-16T10:39:18Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/orders",
+    "response_time_ms": 98,
+    "status_code": 200,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:47:55Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/profile",
+    "response_time_ms": 350,
+    "status_code": 200,
+    "db_query_count": 4,
+    "timestamp": "2026-02-16T10:23:11Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/profile",
+    "response_time_ms": 320,
+    "status_code": 200,
+    "db_query_count": 3,
+    "timestamp": "2026-02-16T10:29:21Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/profile",
+    "response_time_ms": 380,
+    "status_code": 200,
+    "db_query_count": 4,
+    "timestamp": "2026-02-16T10:37:45Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/users/profile",
+    "response_time_ms": 295,
+    "status_code": 200,
+    "db_query_count": 3,
+    "timestamp": "2026-02-16T10:43:22Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/notifications/send",
+    "response_time_ms": 145,
+    "status_code": 200,
+    "db_query_count": 1,
+    "timestamp": "2026-02-16T10:19:33Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/notifications/send",
+    "response_time_ms": 160,
+    "status_code": 200,
+    "db_query_count": 1,
+    "timestamp": "2026-02-16T10:30:55Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/notifications/send",
+    "response_time_ms": 135,
+    "status_code": 200,
+    "db_query_count": 1,
+    "timestamp": "2026-02-16T10:38:12Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/notifications/send",
+    "response_time_ms": 150,
+    "status_code": 200,
+    "db_query_count": 1,
+    "timestamp": "2026-02-16T10:45:28Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/cart/items",
+    "response_time_ms": 220,
+    "status_code": 200,
+    "db_query_count": 3,
+    "timestamp": "2026-02-16T10:20:44Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/cart/items",
+    "response_time_ms": 245,
+    "status_code": 200,
+    "db_query_count": 4,
+    "timestamp": "2026-02-16T10:31:18Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/cart/items",
+    "response_time_ms": 210,
+    "status_code": 200,
+    "db_query_count": 3,
+    "timestamp": "2026-02-16T10:42:55Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/reports/export",
+    "response_time_ms": 3200,
+    "status_code": 200,
+    "db_query_count": 45,
+    "timestamp": "2026-02-16T10:24:10Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/reports/export",
+    "response_time_ms": 3450,
+    "status_code": 200,
+    "db_query_count": 48,
+    "timestamp": "2026-02-16T10:35:22Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/reports/export",
+    "response_time_ms": 3800,
+    "status_code": 504,
+    "db_query_count": 52,
+    "timestamp": "2026-02-16T10:47:11Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/auth/login",
+    "response_time_ms": 180,
+    "status_code": 200,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:15:05Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/auth/login",
+    "response_time_ms": 165,
+    "status_code": 401,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:25:18Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/auth/login",
+    "response_time_ms": 175,
+    "status_code": 200,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:36:42Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/auth/login",
+    "response_time_ms": 190,
+    "status_code": 401,
+    "db_query_count": 2,
+    "timestamp": "2026-02-16T10:44:55Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/inventory/stock",
+    "response_time_ms": 1120,
+    "status_code": 200,
+    "db_query_count": 12,
+    "timestamp": "2026-02-16T10:26:15Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/inventory/stock",
+    "response_time_ms": 1050,
+    "status_code": 200,
+    "db_query_count": 11,
+    "timestamp": "2026-02-16T10:37:28Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/inventory/stock",
+    "response_time_ms": 1180,
+    "status_code": 200,
+    "db_query_count": 13,
+    "timestamp": "2026-02-16T10:48:44Z",
+    "method": "GET"
+  },
+  {
+    "endpoint": "/api/payments/process",
+    "response_time_ms": 420,
+    "status_code": 200,
+    "db_query_count": 5,
+    "timestamp": "2026-02-16T10:27:33Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/payments/process",
+    "response_time_ms": 450,
+    "status_code": 200,
+    "db_query_count": 6,
+    "timestamp": "2026-02-16T10:39:44Z",
+    "method": "POST"
+  },
+  {
+    "endpoint": "/api/payments/process",
+    "response_time_ms": 395,
+    "status_code": 200,
+    "db_query_count": 5,
+    "timestamp": "2026-02-16T10:49:12Z",
+    "method": "POST"
+  }
+]
