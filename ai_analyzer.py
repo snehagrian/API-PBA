@@ -1,19 +1,47 @@
 import os
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Literal
 from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
+try:
+    from anthropic import Anthropic
+    ANTHROPIC_AVAILABLE = True
+except ImportError:
+    ANTHROPIC_AVAILABLE = False
+
 
 class AIAnalyzer:
-    """OpenAI integration for bottleneck analysis"""
+    """Multi-provider AI integration for bottleneck analysis (OpenAI/Claude)"""
     
-    def __init__(self):
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OPENAI_API_KEY not found in environment variables")
-        self.client = OpenAI(api_key=api_key)
+    def __init__(self, provider: Literal["openai", "claude"] = "openai"):
+        """
+        Initialize AI analyzer with specified provider
+        
+        Args:
+            provider: AI provider to use ("openai" or "claude")
+        """
+        self.provider = provider
+        
+        if provider == "openai":
+            api_key = os.getenv("OPENAI_API_KEY")
+            if not api_key:
+                raise ValueError("OPENAI_API_KEY not found in environment variables")
+            self.client = OpenAI(api_key=api_key)
+            self.model = "gpt-4-turbo-preview"
+        
+        elif provider == "claude":
+            if not ANTHROPIC_AVAILABLE:
+                raise ValueError("Anthropic library not installed. Run: pip install anthropic")
+            api_key = os.getenv("ANTHROPIC_API_KEY")
+            if not api_key:
+                raise ValueError("ANTHROPIC_API_KEY not found in environment variables")
+            self.client = Anthropic(api_key=api_key)
+            self.model = "claude-3-opus-20240229"  # Alternatively: claude-3-sonnet-20240229 or claude-3-haiku-20240307
+        
+        else:
+            raise ValueError(f"Unsupported provider: {provider}. Use 'openai' or 'claude'")
     
     def analyze_bottlenecks(
         self, 
@@ -37,33 +65,22 @@ class AIAnalyzer:
                 "recommendations": []
             }
         
-        # Build prompt for OpenAI
+        # Build prompt for AI
         prompt = self._build_analysis_prompt(issues, analysis_data)
         
         try:
-            response = self.client.chat.completions.create(
-                model="gpt-4-turbo-preview",
-                messages=[
-                    {
-                        "role": "system",
-                        "content": """You are an expert backend performance engineer specializing in API optimization, 
-                        database query optimization, and microservices architecture. Analyze API performance bottlenecks 
-                        and provide actionable, code-level recommendations."""
-                    },
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ],
-                temperature=0.7,
-                max_tokens=1500
-            )
-            
-            ai_analysis = response.choices[0].message.content
+            if self.provider == "openai":
+                ai_analysis = self._get_openai_analysis(prompt)
+            elif self.provider == "claude":
+                ai_analysis = self._get_claude_analysis(prompt)
+            else:
+                raise ValueError(f"Unsupported provider: {self.provider}")
             
             return {
                 "status": "bottlenecks_detected",
                 "ai_analysis": ai_analysis,
+                "provider": self.provider,
+                "model": self.model,
                 "issues_analyzed": len(issues),
                 "raw_issues": issues
             }
@@ -72,8 +89,49 @@ class AIAnalyzer:
             return {
                 "status": "error",
                 "error": str(e),
-                "message": "Failed to get AI analysis"
+                "message": f"Failed to get AI analysis from {self.provider}"
             }
+    
+    def _get_openai_analysis(self, prompt: str) -> str:
+        """Get analysis from OpenAI"""
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {
+                    "role": "system",
+                    "content": """You are an expert backend performance engineer specializing in API optimization, 
+                    database query optimization, and microservices architecture. Analyze API performance bottlenecks 
+                    and provide actionable, code-level recommendations."""
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.7,
+            max_tokens=1500
+        )
+        return response.choices[0].message.content
+    
+    def _get_claude_analysis(self, prompt: str) -> str:
+        """Get analysis from Claude"""
+        system_message = """You are an expert backend performance engineer specializing in API optimization, 
+        database query optimization, and microservices architecture. Analyze API performance bottlenecks 
+        and provide actionable, code-level recommendations."""
+        
+        response = self.client.messages.create(
+            model=self.model,
+            max_tokens=1500,
+            temperature=0.7,
+            system=system_message,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        )
+        return response.content[0].text
     
     def _build_analysis_prompt(self, issues: List[str], analysis_data: Dict[str, Any]) -> str:
         """Build detailed prompt for OpenAI"""

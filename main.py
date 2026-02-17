@@ -1,7 +1,8 @@
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Literal
 from log_analyzer import LogAnalyzer
 from ai_analyzer import AIAnalyzer
 
@@ -23,6 +24,9 @@ app.add_middleware(
 # Initialize analyzers
 log_analyzer = LogAnalyzer(slow_threshold_ms=500, error_rate_threshold=0.05)
 
+# Get AI provider from environment (default to openai)
+AI_PROVIDER = os.getenv("AI_PROVIDER", "openai").lower()
+
 
 class LogEntry(BaseModel):
     """Schema for API log entry"""
@@ -38,6 +42,7 @@ class AnalyzeRequest(BaseModel):
     """Request body for analysis"""
     logs: List[LogEntry] = Field(..., description="List of API log entries")
     use_ai: bool = Field(True, description="Enable AI-powered recommendations")
+    ai_provider: Optional[Literal["openai", "claude"]] = Field(None, description="AI provider to use (overrides env)")
 
 
 class AnalysisResponse(BaseModel):
@@ -65,16 +70,17 @@ async def root():
 async def health():
     """Detailed health check"""
     try:
-        # Test OpenAI connection
-        ai_analyzer = AIAnalyzer()
-        ai_status = "connected"
+        # Test AI connection with configured provider
+        ai_analyzer = AIAnalyzer(provider=AI_PROVIDER)
+        ai_status = f"connected ({AI_PROVIDER})"
     except Exception as e:
         ai_status = f"error: {str(e)}"
     
     return {
         "status": "healthy",
         "log_analyzer": "ready",
-        "ai_analyzer": ai_status
+        "ai_analyzer": ai_status,
+        "ai_provider": AI_PROVIDER
     }
 
 
@@ -107,12 +113,14 @@ async def analyze_logs(request: AnalyzeRequest):
         # Get AI recommendations if requested
         if request.use_ai:
             try:
-                ai_analyzer = AIAnalyzer()
+                # Use provider from request or fall back to environment
+                provider = request.ai_provider or AI_PROVIDER
+                ai_analyzer = AIAnalyzer(provider=provider)
                 issues = log_analyzer.get_critical_issues(analysis)
                 ai_recommendations = ai_analyzer.analyze_bottlenecks(issues, analysis)
                 result["ai_recommendations"] = ai_recommendations
             except ValueError as e:
-                # OpenAI API key not configured
+                # API key not configured
                 result["ai_recommendations"] = {
                     "status": "disabled",
                     "message": str(e)

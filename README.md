@@ -5,14 +5,15 @@ Automated API log analysis with OpenAI-powered recommendations. Detects slow end
 ## Features
 
 - Identifies slow endpoints (>500ms), high error rates (>5%), and database-heavy operations
-- GPT-4 powered root cause analysis and optimization recommendations
+- **Multiple AI Providers**: Choose between OpenAI GPT-4 or Anthropic Claude for analysis
+- GPT-4 or Claude-powered root cause analysis and optimization recommendations
 - FastAPI backend with Docker containerization
 - Interactive API documentation at `/docs`
 
 ## Tech Stack
 
 - FastAPI + Uvicorn
-- OpenAI GPT-4
+- OpenAI GPT-4 or Anthropic Claude
 - Python 3.11
 - Docker & Docker Compose
 
@@ -21,8 +22,14 @@ Automated API log analysis with OpenAI-powered recommendations. Detects slow end
 ### Docker (Recommended)
 
 ```bash
-# Create .env file with your OpenAI API key
-echo "OPENAI_API_KEY=sk-your-key-here" > .env
+# Create .env file with your AI provider and API key
+# For OpenAI:
+echo "AI_PROVIDER=openai" > .env
+echo "OPENAI_API_KEY=sk-your-key-here" >> .env
+
+# For Claude:
+echo "AI_PROVIDER=claude" > .env
+echo "ANTHROPIC_API_KEY=sk-ant-your-key-here" >> .env
 
 # Build and run
 docker-compose up --build
@@ -38,9 +45,12 @@ python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Create .env with your OpenAI API key
+# Create .env with your AI provider and API key
 cp .env.example .env
-# Edit .env and add: OPENAI_API_KEY=sk-your-key-here
+# Edit .env and configure:
+# - AI_PROVIDER=openai or claude
+# - OPENAI_API_KEY=sk-... (if using OpenAI)
+# - ANTHROPIC_API_KEY=sk-ant-... (if using Claude)
 
 python main.py
 ```
@@ -77,19 +87,43 @@ python test_analyzer.py
       "method": "GET"
     }
   ],
-  "use_ai": true
+  "use_ai": true,
+  "ai_provider": "claude"  // Optional: "openai" or "claude" (overrides env)
 }
 ```
 
 Returns: Performance analysis with AI-powered recommendations for optimization.
 
-**GET /health** - Health check endpoint
+**GET /health** - Health check endpoint (shows configured AI provider)
 
 **GET /docs** - Interactive Swagger UI documentation
 
+### AI Provider Configuration
+
+Choose between OpenAI or Claude for AI analysis:
+
+**Using OpenAI (default):**
+```bash
+AI_PROVIDER=openai
+OPENAI_API_KEY=sk-your-openai-key
+```
+
+**Using Claude:**
+```bash
+AI_PROVIDER=claude
+ANTHROPIC_API_KEY=sk-ant-your-claude-key
+```
+
+**Override per request:**
+```bash
+curl -X POST "http://localhost:8000/analyze" \
+  -H "Content-Type: application/json" \
+  -d '{"logs":[...], "use_ai":true, "ai_provider":"claude"}'
+```
+
 ### Configuration
 
-Edit `main.py` to adjust thresholds:
+**Analysis thresholds** - Edit `main.py`:
 
 ```python
 log_analyzer = LogAnalyzer(
@@ -97,6 +131,10 @@ log_analyzer = LogAnalyzer(
     error_rate_threshold=0.05
 )
 ```
+
+**AI Models used:**
+- OpenAI: `gpt-4-turbo-preview`
+- Claude: `claude-3-5-sonnet-20241022`
 
 ## Project Structure
 
